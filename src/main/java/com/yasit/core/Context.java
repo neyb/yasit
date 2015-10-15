@@ -1,24 +1,14 @@
 package com.yasit.core;
 
-import com.yasit.core.exceptions.cannotCreateObject;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.HashSet;
-import java.util.Set;
-
 public class Context {
 
-    Set<Class<?>> definitions = new HashSet<>();
+    private final DollDefinitions definitions = new DollDefinitions();
 
-    public void addClass(Class<?> SubjectClass) {
-        definitions.add(SubjectClass);
+    public void addDoll(Class<?> dollClass) {
+        definitions.add(dollClass);
     }
 
-    public <T> T get(Class<T> testClass) {
-        try {
-            return testClass.getConstructor().newInstance();
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            throw new cannotCreateObject(e);
-        }
+    public <T> T getDoll(Class<T> dollClass) {
+        return definitions.getSingleEligibleDefinitionsFor(dollClass).getProvider().get();
     }
 }

@@ -1,13 +1,12 @@
 package com.yasit.core;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class ContextTest {
 
@@ -30,26 +29,25 @@ public class ContextTest {
 
     @Test
     public void canAddClass() throws Exception {
-        new Context().addClass(TestClass.class);
+        new Context().addDoll(TestClass.class);
     }
 
     @Test
     public void whenAClassIsAdded_getWithTheClassReturnsIt() throws Exception {
         Context context = new Context();
-        context.addClass(TestClass.class);
-        TestClass t = context.get(TestClass.class);
+        context.addDoll(TestClass.class);
+        TestClass t = context.getDoll(TestClass.class);
         assertNotNull(t);
         assertEquals(1, TestClass.i.get());
     }
 
     @Test
-    @Ignore
-    public void whenAClassIsAdded_getWithObjectReturnsIt() throws Exception {
+    public void whenAClassIsAdded_getWithObjectReturnsItAndCreateItOnlyOnce() throws Exception {
         Context context = new Context();
-        context.addClass(TestClass.class);
-        Object t = context.get(Object.class);
+        context.addDoll(TestClass.class);
+        Object t = context.getDoll(Object.class);
         assertNotNull(t);
-        assertEquals(1, TestClass.i.get());
+        assertTrue(t instanceof TestClass);
     }
 
 }
