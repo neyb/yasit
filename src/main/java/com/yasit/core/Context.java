@@ -5,7 +5,7 @@ public class Context {
     private final DollDefinitions definitions = new DollDefinitions();
 
     public void addDoll(Class<?> dollClass) {
-        definitions.add(dollClass);
+        definitions.addDollClass(dollClass);
     }
 
     public <T> T getDoll(Class<T> dollClass) {

@@ -30,7 +30,7 @@ class DollDefinitions {
                 .collect(Collectors.toSet());
     }
 
-    public void add(Class<?> dollClass) {
+    public void addDollClass(Class<?> dollClass) {
         definitions.add(DollDefinition.of(dollClass));
     }
 }
