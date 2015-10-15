@@ -7,10 +7,9 @@ import com.yasit.core.exceptions.severalDollFound;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class DollDefinitions {
+class DollDefinitions {
     private final Set<DollDefinition<?>> definitions = new HashSet<>();
 
     public <T> DollDefinition<? extends T> getSingleEligibleDefinitionsFor(Class<T> dollClass) {

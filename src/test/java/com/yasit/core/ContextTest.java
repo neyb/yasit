@@ -1,7 +1,6 @@
 package com.yasit.core;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -12,6 +11,7 @@ public class ContextTest {
 
     public static class TestClass {
         private static AtomicInteger i = new AtomicInteger(0);
+
         public TestClass() {
             i.incrementAndGet();
         }

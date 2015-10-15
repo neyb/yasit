@@ -5,11 +5,13 @@ import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ReflexionProviderTest {
     public static class TestClass {
         private static AtomicInteger instanceCounter = new AtomicInteger();
+
         public TestClass() {
             instanceCounter.incrementAndGet();
         }

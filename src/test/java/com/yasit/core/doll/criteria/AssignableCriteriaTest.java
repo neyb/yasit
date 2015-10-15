@@ -3,7 +3,8 @@ package com.yasit.core.doll.criteria;
 import com.yasit.core.doll.definition.DollDefinition;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class AssignableCriteriaTest {
 
