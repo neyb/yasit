@@ -6,6 +6,10 @@ import com.yasit.core.doll.definition.DollDefinition;
  * @param <T> DollDefinition that matches is a subtype of T. the as method does the cast for you
  */
 public interface DollCriteria<T> {
+    static <T> DollCriteria<T> ofClass(Class<T> dollClass) {
+        return new AssignableCriteria<>(dollClass);
+    }
+
     boolean matches(DollDefinition<?> definition);
 
     /**
@@ -14,9 +18,5 @@ public interface DollCriteria<T> {
     @SuppressWarnings("unchecked")
     default DollDefinition<? extends T> as(DollDefinition<?> definition) {
         return (DollDefinition<? extends T>) definition;
-    }
-
-    static <T> DollCriteria<T> ofClass(Class<T> dollClass) {
-        return new AssignableCriteria<>(dollClass);
     }
 }

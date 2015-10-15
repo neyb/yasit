@@ -9,32 +9,29 @@ import static org.junit.Assert.*;
 
 public class ContextTest {
 
-    public static class TestClass {
-        private static AtomicInteger i = new AtomicInteger(0);
-
-        public TestClass() {
-            i.incrementAndGet();
-        }
-    }
+    private Context context = new Context();
 
     @Before
     public void initCounter() {
         TestClass.i = new AtomicInteger(0);
     }
 
+    @Before
+    public void initContext() {
+        context = new Context();
+    }
+
     @Test
     public void canCreateContext() throws Exception {
-        new Context();
     }
 
     @Test
     public void canAddClass() throws Exception {
-        new Context().addDoll(TestClass.class);
+        context.addDoll(TestClass.class);
     }
 
     @Test
     public void whenAClassIsAdded_getWithTheClassReturnsIt() throws Exception {
-        Context context = new Context();
         context.addDoll(TestClass.class);
         TestClass t = context.getDoll(TestClass.class);
         assertNotNull(t);
@@ -43,11 +40,18 @@ public class ContextTest {
 
     @Test
     public void whenAClassIsAdded_getWithObjectReturnsItAndCreateItOnlyOnce() throws Exception {
-        Context context = new Context();
         context.addDoll(TestClass.class);
         Object t = context.getDoll(Object.class);
         assertNotNull(t);
         assertTrue(t instanceof TestClass);
+    }
+
+    public static class TestClass {
+        private static AtomicInteger i = new AtomicInteger(0);
+
+        public TestClass() {
+            i.incrementAndGet();
+        }
     }
 
 }
