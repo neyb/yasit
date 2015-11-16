@@ -15,12 +15,13 @@ public abstract class ContextTestCommon {
 
     @Before
     public void initCounter() {
-        instanceCounterTestClass.i = new AtomicInteger(0);
+        InstanceCounterTestClass.i = new AtomicInteger(0);
     }
 
-    protected static class instanceCounterTestClass {
+    protected static class InstanceCounterTestClass {
         protected static AtomicInteger i = new AtomicInteger(0);
-        public instanceCounterTestClass() {
+
+        public InstanceCounterTestClass() {
             i.incrementAndGet();
         }
     }

@@ -2,6 +2,7 @@ package com.yasit.core;
 
 import com.yasit.core.doll.criteria.DollCriteria;
 import com.yasit.core.doll.definition.DollDefinition;
+import com.yasit.core.doll.definition.ModifiableDollDefinition;
 import com.yasit.core.exceptions.NoDollFoundForCriteria;
 import com.yasit.core.exceptions.severalDollFound;
 
@@ -11,10 +12,6 @@ import java.util.stream.Collectors;
 
 class DollDefinitions {
     private final Set<DollDefinition<?>> definitions = new HashSet<>();
-
-    public <T> DollDefinition<? extends T> getSingleEligibleDefinitionsFor(Class<T> dollClass) {
-        return getSingleEligibleDefinitionsFor(DollCriteria.ofClass(dollClass));
-    }
 
     public <T> DollDefinition<? extends T> getSingleEligibleDefinitionsFor(DollCriteria<T> criteria) {
         Set<DollDefinition<? extends T>> eligibleDefinitions = getEligibleDefinitionsFor(criteria);
@@ -30,7 +27,9 @@ class DollDefinitions {
                 .collect(Collectors.toSet());
     }
 
-    public void addDollClass(Class<?> dollClass) {
-        definitions.add(DollDefinition.of(dollClass));
+    public <T> ModifiableDollDefinition<T> addDollClass(Class<T> dollClass) {
+        ModifiableDollDefinition<T> dollDefinition = DollDefinition.of(dollClass);
+        definitions.add(dollDefinition);
+        return dollDefinition;
     }
 }
