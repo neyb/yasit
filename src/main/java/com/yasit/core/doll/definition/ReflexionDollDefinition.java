@@ -8,7 +8,7 @@ class ReflexionDollDefinition<T> extends AbstractDollDefinition<T> {
 
     public ReflexionDollDefinition(Class<T> dollClass) {
         this.dollClass = dollClass;
-        with(DollProvider.of(dollClass));
+        setProvider(DollProvider.of(dollClass));
     }
 
     @Override

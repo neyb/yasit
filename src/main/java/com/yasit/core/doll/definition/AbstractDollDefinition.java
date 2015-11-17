@@ -6,7 +6,7 @@ import com.yasit.core.doll.scope.Scope;
 
 public abstract class AbstractDollDefinition<T> implements ModifiableDollDefinition<T> {
     private DollProvider<T> provider;
-    private Scope scope = BuildtInScopes.PROTOTYPE;
+    private Scope scope = BuildtInScopes.SINGLETON;
 
     @Override
     public DollProvider<T> getProvider() {
@@ -19,14 +19,12 @@ public abstract class AbstractDollDefinition<T> implements ModifiableDollDefinit
     }
 
     @Override
-    public ModifiableDollDefinition in(Scope scope) {
+    public void setScope(Scope scope) {
         this.scope = scope;
-        return this;
     }
 
     @Override
-    public ModifiableDollDefinition with(DollProvider<T> provider) {
+    public void setProvider(DollProvider<T> provider) {
         this.provider = provider;
-        return this;
     }
 }

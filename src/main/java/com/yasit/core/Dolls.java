@@ -2,6 +2,7 @@ package com.yasit.core;
 
 import com.yasit.core.doll.criteria.DollCriteria;
 import com.yasit.core.doll.definition.DollDefinition;
+import com.yasit.core.doll.definition.DollDefinitions;
 import com.yasit.core.doll.scope.BuildtInScopes;
 
 import java.util.HashMap;

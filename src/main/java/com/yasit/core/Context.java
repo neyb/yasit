@@ -1,14 +1,15 @@
 package com.yasit.core;
 
 import com.yasit.core.doll.criteria.DollCriteria;
-import com.yasit.core.doll.definition.ModifiableDollDefinition;
+import com.yasit.core.doll.definition.DollDefinitionConfigurator;
+import com.yasit.core.doll.definition.DollDefinitions;
 
 public class Context {
 
     private final DollDefinitions definitions = new DollDefinitions();
     private final Dolls dolls = new Dolls(definitions);
 
-    public <T> ModifiableDollDefinition<T> addDoll(Class<T> dollClass) {
+    public <T> DollDefinitionConfigurator<T> addDoll(Class<T> dollClass) {
         return definitions.addDollClass(dollClass);
     }
 

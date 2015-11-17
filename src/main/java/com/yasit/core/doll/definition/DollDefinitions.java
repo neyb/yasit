@@ -1,4 +1,4 @@
-package com.yasit.core;
+package com.yasit.core.doll.definition;
 
 import com.yasit.core.doll.criteria.DollCriteria;
 import com.yasit.core.doll.definition.DollDefinition;
@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-class DollDefinitions {
+public class DollDefinitions {
     private final Set<DollDefinition<?>> definitions = new HashSet<>();
 
     public <T> DollDefinition<? extends T> getSingleEligibleDefinitionsFor(DollCriteria<T> criteria) {
@@ -27,9 +27,9 @@ class DollDefinitions {
                 .collect(Collectors.toSet());
     }
 
-    public <T> ModifiableDollDefinition<T> addDollClass(Class<T> dollClass) {
+    public <T> DollDefinitionConfigurator<T> addDollClass(Class<T> dollClass) {
         ModifiableDollDefinition<T> dollDefinition = DollDefinition.of(dollClass);
         definitions.add(dollDefinition);
-        return dollDefinition;
+        return new DollDefinitionConfigurator<>(dollDefinition);
     }
 }

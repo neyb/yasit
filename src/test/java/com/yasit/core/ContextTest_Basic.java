@@ -25,8 +25,8 @@ public class ContextTest_Basic extends ContextTestCommon {
     }
 
     @Test
-    public void whenAClassIsAdded_getWithObjectReturnsItAndCreateItEveryTimes() throws Exception {
-        context.addDoll(InstanceCounterTestClass.class);
+    public void whenAClassIsAddedAsPrototype_getWithObjectReturnsItAndCreateItEveryTimes() throws Exception {
+        context.addDoll(InstanceCounterTestClass.class).in(BuildtInScopes.PROTOTYPE);
         Object t = context.getDoll(Object.class);
         assertNotNull(t);
         assertTrue(t instanceof InstanceCounterTestClass);
