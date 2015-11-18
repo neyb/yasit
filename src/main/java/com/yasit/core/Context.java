@@ -1,6 +1,7 @@
 package com.yasit.core;
 
 import com.yasit.core.doll.criteria.DollCriteria;
+import com.yasit.core.doll.definition.DollDefinition;
 import com.yasit.core.doll.definition.DollDefinitionConfigurator;
 import com.yasit.core.doll.definition.DollDefinitions;
 

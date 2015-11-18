@@ -28,7 +28,7 @@ public class DollDefinitions {
     }
 
     public <T> DollDefinitionConfigurator<T> addDollClass(Class<T> dollClass) {
-        ModifiableDollDefinition<T> dollDefinition = DollDefinition.of(dollClass);
+        ModifiableDollDefinition<T> dollDefinition = new ReflexionDollDefinition<>(dollClass);
         definitions.add(dollDefinition);
         return new DollDefinitionConfigurator<>(dollDefinition);
     }

@@ -1,6 +1,5 @@
 package com.yasit.core;
 
-import com.yasit.core.doll.scope.BuildtInScopes;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -13,33 +12,15 @@ public class ContextTest_Basic extends ContextTestCommon {
 
     @Test
     public void canAddClass() throws Exception {
-        context.addDoll(InstanceCounterTestClass.class);
+        context.addDoll(InstanceCountedTest.class);
     }
 
     @Test
     public void whenAClassIsAdded_getWithTheClassReturnsIt() throws Exception {
-        context.addDoll(InstanceCounterTestClass.class);
-        InstanceCounterTestClass t = context.getDoll(InstanceCounterTestClass.class);
+        context.addDoll(InstanceCountedTest.class);
+        InstanceCountedTest t = context.getDoll(InstanceCountedTest.class);
         assertNotNull(t);
-        assertEquals(1, InstanceCounterTestClass.i.get());
-    }
-
-    @Test
-    public void whenAClassIsAddedAsPrototype_getWithObjectReturnsItAndCreateItEveryTimes() throws Exception {
-        context.addDoll(InstanceCounterTestClass.class).in(BuildtInScopes.PROTOTYPE);
-        Object t = context.getDoll(Object.class);
-        assertNotNull(t);
-        assertTrue(t instanceof InstanceCounterTestClass);
-        assertNotSame(t, context.getDoll(Object.class));
-    }
-
-    @Test
-    public void whenAClassIsAddedAsSingleton_getWithObjectReturnsItAndCreateItEveryTimes() throws Exception {
-        context.addDoll(InstanceCounterTestClass.class).in(BuildtInScopes.SINGLETON);
-        Object t = context.getDoll(Object.class);
-        assertNotNull(t);
-        assertTrue(t instanceof InstanceCounterTestClass);
-        assertSame(t, context.getDoll(Object.class));
+        assertEquals(1, InstanceCountedTest.instanceCounter.get());
     }
 
 }
